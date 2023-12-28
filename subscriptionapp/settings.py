@@ -30,6 +30,9 @@ INSTALLED_APPS = [
     "about",
     "contact",
     "whychoose",
+    "accounts",
+
+    
     "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",

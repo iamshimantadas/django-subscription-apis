@@ -18,12 +18,14 @@ from home.urls import *
 from about.urls import *
 from contact.urls import *
 from whychoose.urls import *
+from accounts.urls import *
 
 urlpatterns = [
     path("home/", include("home.urls")),
     path("about/", include("about.urls")),
     path("contact/", include("contact.urls")),
     path("whychoose/", include("whychoose.urls")),
+    path("account/", include("accounts.urls")),
     
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
