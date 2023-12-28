@@ -36,7 +36,7 @@ class AccountView(ModelViewSet):
                 refresh = RefreshToken.for_user(user)
                 return Response(
                     {
-                        "message": "user account created!",
+                        "status": "success",
                         "refresh": str(refresh),
                         "access": str(refresh.access_token),
                     },
@@ -44,9 +44,9 @@ class AccountView(ModelViewSet):
                 )
             else:
                 return Response(
-                    {"message": "error occured! try again!"},
+                    {"status": "error"},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
         except Exception as e:
             print(e)
-            return Response({"message": "error occured!"})
+            return Response({"status": "error"})
