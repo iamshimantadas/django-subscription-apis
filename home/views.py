@@ -12,7 +12,16 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 
-class HomeView(ModelViewSet):
+from rest_framework.views import APIView
+
+class CarouselAllView(APIView):
+    def get(self, request):
+        carousel_obj = Carousel.objects.all()
+        serializer = CarouselSerializer(carousel_obj, many=True)
+        return Response({"data":serializer.data})
+    
+
+class CarouselActionView(ModelViewSet):
     queryset=Carousel.objects.all()
     serializer_class = CarouselSerializer
     permission_classes=[IsAuthenticated]
