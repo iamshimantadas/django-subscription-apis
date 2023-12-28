@@ -7,3 +7,7 @@ This is a django project made for subscription management!
 ** note: django admin **
 email[username]: admin@admin.com
 password: admin
+
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
