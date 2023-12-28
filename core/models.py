@@ -25,7 +25,7 @@ class WhyChooseUs(models.Model):
     choose_heading3 = models.CharField(max_length=250)
     chooose_descp3 = models.TextField()
 
-class ContantUs(models.Model):
+class ContactUs(models.Model):
     fullname = models.CharField(max_length=250)
     email = models.EmailField()
     phone = models.BigIntegerField()
