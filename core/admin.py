@@ -86,6 +86,6 @@ class UserAdmin(UserAdmin):
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Carousel)
-admin.site.register(ContantUs)
+admin.site.register(ContactUs)
 admin.site.register(WhyChooseUs)
 admin.site.register(AboutUs)
