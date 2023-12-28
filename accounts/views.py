@@ -4,24 +4,49 @@ from rest_framework.viewsets import ModelViewSet
 from core.models import User
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import *
+
 
 class AccountView(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = AccountSerializer
-    permission_classes = []
-    authentication_classes = []
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    def get_permissions(self):
+        if self.action == "create":
+            # Exclude IsAuthenticated for the create method
+            return []
+        else:
+            # Include IsAuthenticated for other methods
+            return [IsAuthenticated()]
 
     def create(self, request):
         data = request.data
+        email = data.get("email")
         try:
             serializer = self.serializer_class(data=data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
-                return Response({"message":"user account created!"},status=status.HTTP_201_CREATED)   
+                user = User.objects.get(email=email)
+                refresh = RefreshToken.for_user(user)
+                return Response(
+                    {
+                        "message": "user account created!",
+                        "refresh": str(refresh),
+                        "access": str(refresh.access_token),
+                    },
+                    status=status.HTTP_201_CREATED,
+                )
             else:
-                return Response({"message":"error occured! try again!"},status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"message": "error occured! try again!"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
         except Exception as e:
             print(e)
-            return Response({"message":"error occured!"})
+            return Response({"message": "error occured!"})
