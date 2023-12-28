@@ -11,6 +11,9 @@ class Carousel(models.Model):
     img3 = models.ImageField(upload_to="media/core")
     descp = models.TextField()
 
+    def __str__(self):
+        return self.descp
+
 
 class AboutUs(models.Model):
     heading = models.CharField(max_length=200)
