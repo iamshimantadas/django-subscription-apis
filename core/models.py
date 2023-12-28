@@ -6,13 +6,12 @@ from django.contrib.auth.models import PermissionsMixin
 from core.manager import UserManager
 
 class Carousel(models.Model):
-    img1 = models.ImageField(upload_to="media/core")
-    img2 = models.ImageField(upload_to="media/core")
-    img3 = models.ImageField(upload_to="media/core")
-    descp = models.TextField()
-
+    carousel_heading = models.CharField(max_length=100)
+    carousel_img = models.ImageField(upload_to="media/core")
+    carousel_desc = models.TextField()
+    
     def __str__(self):
-        return self.descp
+        return self.carousel_heading
 
 
 class AboutUs(models.Model):
@@ -21,12 +20,9 @@ class AboutUs(models.Model):
     about_descp = models.TextField()
 
 class WhyChooseUs(models.Model):
-    choose_heading1 = models.CharField(max_length=250)
-    chooose_descp1 = models.TextField()
-    choose_heading2 = models.CharField(max_length=250)
-    chooose_descp2 = models.TextField()
-    choose_heading3 = models.CharField(max_length=250)
-    chooose_descp3 = models.TextField()
+    chooseus_heading = models.CharField(max_length=250)
+    chooseus_descp = models.TextField()
+    
 
 class ContactUs(models.Model):
     fullname = models.CharField(max_length=250)
