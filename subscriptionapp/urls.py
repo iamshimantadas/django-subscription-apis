@@ -10,6 +10,7 @@ from about.urls import *
 urlpatterns = [
     path('home/',include('home.urls')),
     path('about/',include('about.urls')),
+    path('contact/',include('about.urls')),
 
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/doc/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
