@@ -9,5 +9,5 @@ urlpatterns = [
     # path('list/<int:pk>',HomeView.as_view()),
 ]
 
-router.register("homes",HomeView)
+router.register("carousels",HomeView)
 urlpatterns+=router.urls

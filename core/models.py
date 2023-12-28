@@ -7,7 +7,7 @@ from core.manager import UserManager
 
 class Carousel(models.Model):
     carousel_heading = models.CharField(max_length=200)
-    carousel_img = models.ImageField(upload_to="media/core")
+    carousel_img = models.ImageField(upload_to="media/core",null=True)
     carousel_desc = models.TextField()
     
     def __str__(self):

@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "core",
     "home",
-
+    'about',
 
     "rest_framework",
     "drf_spectacular",
