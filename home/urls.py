@@ -7,7 +7,7 @@ urlpatterns = [
 ]
 
 router=SimpleRouter()
-router.register("carousels",CarouselActionView)
+router.register("",CarouselActionView)
 
 
 urlpatterns+=router.urls

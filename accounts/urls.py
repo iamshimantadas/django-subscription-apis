@@ -7,7 +7,7 @@ urlpatterns = [
 ]
 
 router = SimpleRouter()
-router.register("auth",AccountView)
+router.register("",AccountView)
 
 urlpatterns = urlpatterns + router.urls
 

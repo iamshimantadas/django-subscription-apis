@@ -21,26 +21,26 @@ from whychoose.urls import *
 from accounts.urls import *
 
 urlpatterns = [
-    path("home/", include("home.urls")),
-    path("about/", include("about.urls")),
-    path("contact/", include("contact.urls")),
-    path("whychoose/", include("whychoose.urls")),
-    path("account/", include("accounts.urls")),
+    path("api/home/", include("home.urls")),
+    path("api/about/", include("about.urls")),
+    path("api/contact/", include("contact.urls")),
+    path("api/chooseus/", include("whychoose.urls")),
+    path("api/auth/", include("accounts.urls")),
     
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
-        "api/schema/doc/",
+        "api/docs/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
     path(
-        "api/schema/redoc/",
+        "api/redoc/",
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
     
-    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/auth/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/auth/refresh-token/", TokenRefreshView.as_view(), name="token_refresh"),
     
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

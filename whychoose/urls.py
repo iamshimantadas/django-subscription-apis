@@ -6,7 +6,7 @@ urlpatterns = [
 ]
 
 router = SimpleRouter()
-router.register("whyus",WhyChooseUsView)
+router.register("",WhyChooseUsView)
 
 urlpatterns = urlpatterns + router.urls
 

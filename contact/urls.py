@@ -7,7 +7,7 @@ urlpatterns = [
 ]
 
 router = SimpleRouter()
-router.register("contact",ContactView)
+router.register("",ContactView)
 
 urlpatterns = urlpatterns + router.urls
 
