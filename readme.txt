@@ -11,6 +11,8 @@ This is a django project made for subscription management!
 2. http://localhost:8000/home/carousels/ => full CRUD with carousels with JWT auth
 3. http://localhost:8000/api/ourteams/ => full CRUD of our teams with JWT auth
 4. http://localhost:8000/api/ourteams/all/ => get all the details about our teams without AUTH - only read access
+5. http://localhost:8000/api/about/ => full CRUD of about with JWT auth
+6. http://localhost:8000/api/about/all/ => get about us info without JWT
 
 
 
