@@ -13,10 +13,10 @@ class OurTeamAllView(APIView):
     def get(self,request):
         queryset = OurTeam.objects.all()
         serializer = OurTeamSerializer(queryset, many=True)
-        return Response({"team":serializer.data})
+        return Response(serializer.data)
 
 class OurTeamView(ModelViewSet):
     queryset = OurTeam.objects.all()
     serializer_class = OurTeamSerializer
-    permission_classes=[IsAuthenticated]
-    authentication_classes=[JWTAuthentication]
+    # permission_classes=[IsAuthenticated]
+    # authentication_classes=[JWTAuthentication]

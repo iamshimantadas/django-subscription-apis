@@ -8,7 +8,7 @@ router = SimpleRouter()
 router.register("",AboutView)
 
 urlpatterns = [
-    path("all/",AboutAllView.as_view()),
+    # path("all/",AboutAllView.as_view()),
 ]
 
 urlpatterns = urlpatterns + router.urls

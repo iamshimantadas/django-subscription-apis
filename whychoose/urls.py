@@ -3,7 +3,7 @@ from rest_framework.routers import SimpleRouter
 from .views import *
 
 urlpatterns = [
-    path("all/",WhyChooseUsAllView.as_view()),
+    # path("all/",WhyChooseUsAllView.as_view()),
 ]
 
 router = SimpleRouter()

@@ -9,7 +9,7 @@ class AboutAllView(APIView):
     def get(self, request):
         queryset = AboutUs.objects.all()
         serializer = AboutSerializer(queryset, many=True)
-        return Response({"data":serializer.data})
+        return Response(serializer.data)
 
 class AboutView(ModelViewSet):
     queryset = AboutUs.objects.all()

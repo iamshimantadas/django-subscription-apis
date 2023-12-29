@@ -6,7 +6,7 @@ router = SimpleRouter()
 router.register("",OurTeamView)
 
 urlpatterns = [
-    path("all/",OurTeamAllView.as_view()),
+    # path("all/",OurTeamAllView.as_view()),
 ]
 
 urlpatterns = urlpatterns + router.urls

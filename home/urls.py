@@ -3,7 +3,7 @@ from rest_framework.routers import SimpleRouter
 from .views import *
 
 urlpatterns = [
-    path('fetchall/',CarouselAllView.as_view()),
+    # path('fetchall/',CarouselAllView.as_view()),
 ]
 
 router=SimpleRouter()

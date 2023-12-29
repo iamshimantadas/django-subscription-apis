@@ -11,7 +11,7 @@ class WhyChooseUsAllView(APIView):
     def get(self, request):
         queryset = WhyChooseUs.objects.all()
         serializer = WhyChooseUsSerializer(queryset, many=True)
-        return Response({"data":serializer.data})
+        return Response(serializer.data)
     
 class WhyChooseUsView(ModelViewSet):
     queryset = WhyChooseUs.objects.all()

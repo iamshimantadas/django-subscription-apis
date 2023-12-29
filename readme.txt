@@ -16,7 +16,7 @@ This is a django project made for subscription management!
 7. http://localhost:8000/api/chooseus/ => full CRUD of "why choose us" with JWT
 8. http://localhost:8000/api/chooseus/all/ => get all info of 'why choose us' without JWT
 9. http://localhost:8000/api/contact/new-request/ => send new contact request without JWT
-
+10. http://localhost:8000/api/contact/ => full CRUD of contact forms with JWT auth
 
 
 ** note: django admin **
