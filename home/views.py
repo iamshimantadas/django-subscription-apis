@@ -18,7 +18,7 @@ class CarouselAllView(APIView):
     def get(self, request):
         carousel_obj = Carousel.objects.all()
         serializer = CarouselSerializer(carousel_obj, many=True)
-        return Response({"data":serializer.data})
+        return Response(serializer.data)
     
 
 class CarouselActionView(ModelViewSet):
