@@ -13,6 +13,8 @@ This is a django project made for subscription management!
 4. http://localhost:8000/api/ourteams/all/ => get all the details about our teams without AUTH - only read access
 5. http://localhost:8000/api/about/ => full CRUD of about with JWT auth
 6. http://localhost:8000/api/about/all/ => get about us info without JWT
+7. http://localhost:8000/api/chooseus/ => full CRUD of "why choose us" with JWT
+8. http://localhost:8000/api/chooseus/all/ => get all info of 'why choose us' without JWT
 
 
 
