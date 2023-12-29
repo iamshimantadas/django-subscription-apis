@@ -14,20 +14,26 @@ class PriceView(ModelViewSet):
     authentication_classes = []
 
 
-class Pricing_detail_view(APIView):
-    def get(self, request):
-        queryset = Pricing_detail.objects.all()
-        serializer = PricingDetailSerializer(queryset, many=True)
-        return Response(serializer.data)
+class Pricing_detail_view(ModelViewSet):
+    queryset = Pricing_detail.objects.all()
+    serializer_class = PricingDetailSerializer
+    authentication_classes = []
+    permission_classes = []
+
+# class Pricing_detail_view(APIView):
+#     def get(self, request):
+#         queryset = Pricing_detail.objects.all()
+#         serializer = PricingDetailSerializer(queryset, many=True)
+#         return Response(serializer.data)
     
-    def post(self, request):
-        serializer = PricingDetailSerializer(data=request.data)
-        try:
-            if serializer.is_valid(raise_exception=True):
-                serializer.save()
-                return Response({"status":"record saved"},status=status.HTTP_201_CREATED)
-            else:
-                return Response({"status":"error"},status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            print(e)
-            return Response({"status":"error"},status=status.HTTP_400_BAD_REQUEST)    
+#     def post(self, request):
+#         serializer = PricingDetailSerializer(data=request.data)
+#         try:
+#             if serializer.is_valid(raise_exception=True):
+#                 serializer.save()
+#                 return Response({"status":"record saved"},status=status.HTTP_201_CREATED)
+#             else:
+#                 return Response({"status":"error"},status=status.HTTP_400_BAD_REQUEST)
+#         except Exception as e:
+#             print(e)
+#             return Response({"status":"error"},status=status.HTTP_400_BAD_REQUEST)    

@@ -81,8 +81,10 @@ class Pricing(models.Model):
     package_name = models.CharField(max_length=200)
     price = models.CharField(max_length=100)
     details = models.ManyToManyField(
-        Pricing_detail, related_name="package_detail", null=True
+        Pricing_detail, related_name="package_detail"
     )
+    popular = models.BooleanField(null=True)
+    link = models.CharField(max_length=100,null=True, default="/")
 
     def __str__(self):
         return self.package_name

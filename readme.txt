@@ -17,7 +17,8 @@ This is a django project made for subscription management!
 8. http://localhost:8000/api/chooseus/all/ => get all info of 'why choose us' without JWT
 9. http://localhost:8000/api/contact/new-request/ => send new contact request without JWT
 10. http://localhost:8000/api/contact/ => full CRUD of contact forms with JWT auth
-
+11. http://localhost:8000/api/pricing/ => full CRUD of pricing table 
+12. http://localhost:8000/api/pricing/pricing-detail/ => only GET and POST method allowed for pricing 
 
 
 
