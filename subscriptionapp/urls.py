@@ -26,9 +26,8 @@ urlpatterns = [
     path("api/about/", include("about.urls")),
     path("api/contact/", include("contact.urls")),
     path("api/chooseus/", include("whychoose.urls")),
-    path("api/ourteams/",include("ourteams.urls")),
-    path("api/auth/", include("accounts.urls")),
-    
+    path("api/ourteams/", include("ourteams.urls")),
+    path("api/", include("accounts.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/docs/",
@@ -40,9 +39,8 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
-    
-    # path("api/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    # path("api/refresh-token/", TokenRefreshView.as_view(), name="token_refresh"),
-    
+
+
+
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,7 +3,7 @@ This is a django project made for subscription management!
 ** AUTH APS details **
 1. http://localhost:8000/api/auth/login/ => get JWT token on basics of correct email[username] and password
 2. http://localhost:8000/api/auth/refresh-token/ => get refresh token of JWT
-3. http://localhost:8000/account/auth/ => full CRUD of customers with JWT auth
+3. http://localhost:8000/api/users/ => full CRUD of customers with JWT auth
 
 
 ** external apps api details **
@@ -17,6 +17,8 @@ This is a django project made for subscription management!
 8. http://localhost:8000/api/chooseus/all/ => get all info of 'why choose us' without JWT
 9. http://localhost:8000/api/contact/new-request/ => send new contact request without JWT
 10. http://localhost:8000/api/contact/ => full CRUD of contact forms with JWT auth
+
+
 
 
 ** note: django admin **
