@@ -4,11 +4,14 @@ This is a django project made for subscription management!
 1. http://localhost:8000/api/login/ => get JWT token on basics of correct email[username] and password
 2. http://localhost:8000/api/refresh-token/ => get refresh token of JWT
 3. http://localhost:8000/account/auth/ => full CRUD of customers with JWT auth
+
+
 ** external apps api details **
 1. http://localhost:8000/home/fetchall/ => show details about home page - carousels and description
 2. http://localhost:8000/home/carousels/ => full CRUD with carousels with JWT auth
 3. http://localhost:8000/api/ourteams/ => full CRUD of our teams with JWT auth
 4. http://localhost:8000/api/ourteams/all/ => get all the details about our teams without AUTH - only read access
+
 
 
 ** note: django admin **
