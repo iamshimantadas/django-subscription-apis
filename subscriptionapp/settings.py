@@ -6,6 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY") 
 DEBUG = True
 ALLOWED_HOSTS = []
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -22,15 +23,10 @@ EXTERNAL_APPS = [
     "contact",
     "whychoose",
     "accounts",
-<<<<<<< HEAD
+     "ourteams",
 ]
 
 EXTERNAL_PACKAGES = [
-=======
-    "ourteams",
-
-    
->>>>>>> 317de1b (our team module app)
     "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",
