@@ -22,9 +22,15 @@ EXTERNAL_APPS = [
     "contact",
     "whychoose",
     "accounts",
+<<<<<<< HEAD
 ]
 
 EXTERNAL_PACKAGES = [
+=======
+    "ourteams",
+
+    
+>>>>>>> 317de1b (our team module app)
     "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",
