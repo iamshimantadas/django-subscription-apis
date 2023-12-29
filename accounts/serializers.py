@@ -54,6 +54,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         if request and obj.user.profile:
             return request.build_absolute_uri(obj.user.profile.url)
         return None
+    
+    def get_role(self, obj):
+        return obj.user.role
 
     def validate(self, attrs):
         data = super().validate(attrs)
@@ -64,4 +67,5 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['address'] = self.user.address
         data['phone'] = self.user.phone
         data['profile'] = self.get_profile(self)
+        data['role'] = self.user.role
         return data
