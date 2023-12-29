@@ -10,6 +10,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .serializers import *
 
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 class AccountView(ModelViewSet):
     queryset = User.objects.all()
@@ -51,4 +52,6 @@ class AccountView(ModelViewSet):
             print(e)
             return Response({"status": "error"})
 
-# TEST
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer

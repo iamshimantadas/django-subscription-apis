@@ -49,7 +49,7 @@ class NewContactRequestView(APIView):
         except Exception as e:
             print(e)
             return Response(
-                {"satus": "error"}, status=status.HTTP_400_BAD_REQUEST
+                {"status": "error"}, status=status.HTTP_400_BAD_REQUEST
             )
 
 

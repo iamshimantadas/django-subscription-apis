@@ -41,8 +41,8 @@ urlpatterns = [
         name="redoc",
     ),
     
-    path("api/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/refresh-token/", TokenRefreshView.as_view(), name="token_refresh"),
+    # path("api/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    # path("api/refresh-token/", TokenRefreshView.as_view(), name="token_refresh"),
     
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

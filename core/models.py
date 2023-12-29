@@ -26,7 +26,7 @@ class WhyChooseUs(models.Model):
 class ContactUs(models.Model):
     fullname = models.CharField(max_length=250)
     email = models.EmailField()
-    phone = models.BigIntegerField()
+    phone = models.BigIntegerField(null=True)
     message = models.TextField()
 
 class OurTeam(models.Model):
