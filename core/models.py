@@ -29,6 +29,15 @@ class ContactUs(models.Model):
     phone = models.BigIntegerField()
     message = models.TextField()
 
+class OurTeam(models.Model):
+    name = models.CharField(max_length=50)
+    designation = models.CharField(max_length=100)
+    description = models.TextField()
+    profileimg = models.ImageField(upload_to="media/core", null=True)
+
+    def __str__(self):
+        return self.name
+
 # custom model    
 class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=15)
