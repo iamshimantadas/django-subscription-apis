@@ -20,6 +20,7 @@ from contact.urls import *
 from whychoose.urls import *
 from accounts.urls import *
 from ourteams.urls import *
+from pricing.urls import *
 
 urlpatterns = [
     path("api/home/", include("home.urls")),
@@ -39,7 +40,7 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
-
+    path("api/pricing/",include("pricing.urls")),
 
 
     path("admin/", admin.site.urls),

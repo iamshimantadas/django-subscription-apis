@@ -68,3 +68,21 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class Pricing_detail(models.Model):
+    detail_name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.detail_name
+
+
+class Pricing(models.Model):
+    package_name = models.CharField(max_length=200)
+    price = models.CharField(max_length=100)
+    details = models.ManyToManyField(
+        Pricing_detail, related_name="package_detail", null=True
+    )
+
+    def __str__(self):
+        return self.package_name

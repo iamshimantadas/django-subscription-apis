@@ -24,6 +24,7 @@ EXTERNAL_APPS = [
     "whychoose",
     "accounts",
      "ourteams",
+     "pricing",
 ]
 
 EXTERNAL_PACKAGES = [
