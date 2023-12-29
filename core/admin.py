@@ -82,16 +82,7 @@ class UserAdmin(UserAdmin):
         ("Password", {"fields": ("password",)}),
     )
 
-    ROLES = (
-        ('admin', 'admin'),
-        ('customer', 'customer'),
-    )
-    role = models.CharField(
-        max_length=20,
-        choices=ROLES,
-        null=True,
-        default='customer'
-    )
+    
 
 
 

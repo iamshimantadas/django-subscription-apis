@@ -6,7 +6,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id","first_name","last_name","email","password","address","phone","profile"]
+        fields = ["id","first_name","last_name","email","password","address","phone","profile","role"]
         
     def save(self, **kwargs):
         phone = self.validated_data.get('phone', None)

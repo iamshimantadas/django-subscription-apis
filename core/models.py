@@ -5,29 +5,33 @@ from django.contrib.auth.models import PermissionsMixin
 
 from core.manager import UserManager
 
+
 class Carousel(models.Model):
     carousel_heading = models.CharField(max_length=200)
-    carousel_img = models.ImageField(upload_to="media/core",null=True)
+    carousel_img = models.ImageField(upload_to="media/core", null=True)
     carousel_desc = models.TextField()
-    
+
     def __str__(self):
         return self.carousel_heading
+
 
 class AboutUs(models.Model):
     heading = models.CharField(max_length=200)
     thumbimg = models.ImageField(upload_to="media/core")
     about_descp = models.TextField()
 
+
 class WhyChooseUs(models.Model):
     chooseus_heading = models.CharField(max_length=250)
     chooseus_descp = models.TextField()
-    
+
 
 class ContactUs(models.Model):
     fullname = models.CharField(max_length=250)
     email = models.EmailField()
     phone = models.BigIntegerField(null=True)
     message = models.TextField()
+
 
 class OurTeam(models.Model):
     name = models.CharField(max_length=50)
@@ -38,15 +42,21 @@ class OurTeam(models.Model):
     def __str__(self):
         return self.name
 
-# custom model    
+
+# custom model
 class User(AbstractBaseUser, PermissionsMixin):
+    ROLES = (
+        ("admin", "admin"),
+        ("customer", "customer"),
+    )
+
     first_name = models.CharField(max_length=15)
     last_name = models.CharField(max_length=15)
     email = models.EmailField(max_length=200, unique=True)
     address = models.TextField(null=True)
     phone = models.BigIntegerField(null=True)
-    profile = models.ImageField(upload_to="media/core",null=True)
-    role = models.CharField(max_length=15,null=True)
+    profile = models.ImageField(upload_to="media/core", null=True)
+    role = models.CharField(max_length=20, choices=ROLES, null=True, default="customer")
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -58,5 +68,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-    
-
