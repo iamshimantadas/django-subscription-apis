@@ -33,14 +33,35 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     def get_user_id(self, obj):
         return obj.user.id
+    
+    def first_name(self, obj):
+        return obj.user.first_name
+    
+    def last_name(self, obj):
+        return obj.user.last_name
 
     def get_username(self, obj):
         return obj.user.email
+    
+    def get_address(self, obj):
+        return obj.user.address
+    
+    def get_phone(self, obj):
+        return obj.user.phone
+
+    def get_profile(self, obj):
+        request = self.context.get('request')
+        if request and obj.user.profile:
+            return request.build_absolute_uri(obj.user.profile.url)
+        return None
 
     def validate(self, attrs):
         data = super().validate(attrs)
-        # Add additional fields to the response
         data['user_id'] = self.user.id
+        data['first_name'] = self.user.first_name
+        data['last_name'] = self.user.last_name
         data['email'] = self.user.email
-        # Add more user details as needed
+        data['address'] = self.user.address
+        data['phone'] = self.user.phone
+        data['profile'] = self.get_profile(self)
         return data
