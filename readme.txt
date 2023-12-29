@@ -5,7 +5,8 @@ This is a django project made for subscription management!
 2. http://localhost:8000/home/carousels/ => you can perform all the operations related carousels but JWT token will required!
 3. http://localhost:8000/api/token/ => get JWT token on basics of correct email[username] and password
 4. http://localhost:8000/account/auth/ => send the new user registration request and after successfull registration it will gets back a JWT access to user-side
-
+5. http://localhost:8000/api/ourteams/ => full CRUD of our teams
+6. http://localhost:8000/api/ourteams/all/ => get all the details about our teams without AUTH - only read access
 
 
 ** note: django admin **
