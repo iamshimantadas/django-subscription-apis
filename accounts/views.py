@@ -50,3 +50,5 @@ class AccountView(ModelViewSet):
         except Exception as e:
             print(e)
             return Response({"status": "error"})
+
+# TEST
