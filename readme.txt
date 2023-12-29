@@ -1,8 +1,8 @@
 This is a django project made for subscription management!
 
 ** AUTH APS details **
-1. http://localhost:8000/api/login/ => get JWT token on basics of correct email[username] and password
-2. http://localhost:8000/api/refresh-token/ => get refresh token of JWT
+1. http://localhost:8000/api/auth/login/ => get JWT token on basics of correct email[username] and password
+2. http://localhost:8000/api/auth/refresh-token/ => get refresh token of JWT
 3. http://localhost:8000/account/auth/ => full CRUD of customers with JWT auth
 
 
