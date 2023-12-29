@@ -37,35 +37,19 @@ class NewContactRequestView(APIView):
 
                 return Response(
                     {
-                        "status": "new contact request saved. Please Check your provided email for more details!"
+                        "status": "success",
+                        "message":"Email sent successfully",
                     },
                     status=status.HTTP_201_CREATED,
                 )
             else:
                 return Response(
-                    {"status": "error occured!"}, status=status.HTTP_400_BAD_REQUEST
+                    {"status": "error"}, status=status.HTTP_400_BAD_REQUEST
                 )
         except Exception as e:
             print(e)
             return Response(
-                {"satus": "error occured"}, status=status.HTTP_400_BAD_REQUEST
+                {"satus": "error"}, status=status.HTTP_400_BAD_REQUEST
             )
 
 
-class ContactView(ModelViewSet):
-    queryset = ContactUs.objects.all()
-    serializer_class = ContactSerualizer
-    permission_classes = []
-    authentication_classes = []
-
-    def update(self, request, *args, **kwargs):
-        return Response(
-            {"message": "update method not allowed"},
-            status=status.HTTP_406_NOT_ACCEPTABLE,
-        )
-
-    def partial_update(self, request, *args, **kwargs):
-        return Response(
-            {"message": "partial update method not allowed"},
-            status=status.HTTP_406_NOT_ACCEPTABLE,
-        )

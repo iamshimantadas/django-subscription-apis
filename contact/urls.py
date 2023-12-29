@@ -7,8 +7,4 @@ urlpatterns = [
     path("new-request/",NewContactRequestView.as_view()),
 ]
 
-router = SimpleRouter()
-router.register("",ContactView)
-
-urlpatterns = urlpatterns + router.urls
 
