@@ -129,3 +129,9 @@ SPECTACULAR_SETTINGS = {
 
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+# mail settings
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+
