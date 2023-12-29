@@ -14,6 +14,11 @@ from rest_framework import status
 class NewContactRequestView(APIView):
     serializer_class = ContactSerualizer
 
+    def get(self, request):
+        queryset = ContactUs.objects.all()
+        serializer = ContactSerualizer(queryset, many=True)
+        return Response(serializer.data)
+
     def post(self, request):
         data = request.data
         serializer = self.serializer_class(data=data)
