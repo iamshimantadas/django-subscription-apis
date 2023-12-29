@@ -25,3 +25,5 @@ password: admin
 ** install required packages from requirements.txt via 'pip'
 pip freeze > requirements.txt
 pip install -r requirements.txt
+
+test
