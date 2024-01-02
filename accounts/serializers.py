@@ -27,7 +27,6 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    # Add additional fields you want to include in the response
     user_id = serializers.SerializerMethodField()
     username = serializers.SerializerMethodField()
 
@@ -57,17 +56,33 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     
     def get_role(self, obj):
         return obj.user.role
+    
+    def get_user(self, obj):
+        return {
+            "user_id": obj.user.id,
+            "first_name": obj.user.first_name,
+            "last_name": obj.user.last_name,
+            "email": obj.user.email,
+            "address": obj.user.address,
+            "phone": obj.user.phone,
+            "profile": self.get_profile(obj),
+            "role": obj.user.role,
+        }
 
     def validate(self, attrs):
+        # data = super().validate(attrs)
+        # data['user_id'] = self.user.id
+        # data['first_name'] = self.user.first_name
+        # data['last_name'] = self.user.last_name
+        # data['email'] = self.user.email
+        # data['address'] = self.user.address
+        # data['phone'] = self.user.phone
+        # data['profile'] = self.get_profile(self)
+        # data['role'] = self.user.role
+        # return data
+
         data = super().validate(attrs)
-        data['user_id'] = self.user.id
-        data['first_name'] = self.user.first_name
-        data['last_name'] = self.user.last_name
-        data['email'] = self.user.email
-        data['address'] = self.user.address
-        data['phone'] = self.user.phone
-        data['profile'] = self.get_profile(self)
-        data['role'] = self.user.role
+        data['user'] = self.get_user(self)
         return data
 
 
