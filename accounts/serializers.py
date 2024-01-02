@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from core.models import User
+from core.models import User, OTP
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class AccountSerializer(serializers.ModelSerializer):
@@ -69,3 +69,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['profile'] = self.get_profile(self)
         data['role'] = self.user.role
         return data
+
+
+class ChangePasswordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OTP
+        fields = "__all__"

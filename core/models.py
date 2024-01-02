@@ -88,3 +88,8 @@ class Pricing(models.Model):
 
     def __str__(self):
         return self.package_name
+
+
+class OTP(models.Model):
+    otpmail = models.EmailField()
+    otp_value = models.CharField(max_length=50, null=True)
