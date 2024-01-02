@@ -75,7 +75,7 @@ class ChangePassword(APIView):
         data = request.data
         email = data.get("otpmail")
         print(data)
-        if User.objects.get(email=email).exist():
+        if User.objects.filter(email=email).exists():
             # letters = string.ascii_letters
             # digits = string.digits
             # special_chars = string.punctuation
@@ -97,6 +97,6 @@ class ChangePassword(APIView):
             # except Exception as e:
             #     print(e)
             #     return Response({"status":"error"})
-            return Response({"status":"found"})
+            return Response({"status":"found"},status=status.HTTP_302_FOUND)
         else:
-            return Response({"status":"no email found!"})   
+            return Response({"status":"no email found!"},status=status.HTTP_404_NOT_FOUND)   

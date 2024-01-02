@@ -17,7 +17,7 @@ class NewContactRequestView(APIView):
     def get(self, request):
         queryset = ContactUs.objects.all()
         serializer = ContactSerualizer(queryset, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data,status=status.HTTP_200_OK)
 
     def post(self, request):
         data = request.data
@@ -42,19 +42,21 @@ class NewContactRequestView(APIView):
 
                 return Response(
                     {
-                        "status": "success",
+                        "status": status.HTTP_201_CREATED,
                         "message":"Email sent successfully",
                     },
-                    status=status.HTTP_201_CREATED,
+                    status=status.HTTP_201_CREATED
                 )
             else:
                 return Response(
-                    {"status": "error"}, status=status.HTTP_400_BAD_REQUEST
+                    {
+                        "status": status.HTTP_400_BAD_REQUEST},
+                    status=status.HTTP_400_BAD_REQUEST
                 )
         except Exception as e:
             print(e)
             return Response(
-                {"status": "error"}, status=status.HTTP_400_BAD_REQUEST
+                {"status": status.HTTP_400_BAD_REQUEST}, status=status.HTTP_400_BAD_REQUEST
             )
 
 

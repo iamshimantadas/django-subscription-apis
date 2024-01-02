@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from core.models import User, OTP
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework import status
 
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
@@ -83,6 +84,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         data = super().validate(attrs)
         data['user'] = self.get_user(self)
+        data['status'] = status.HTTP_200_OK
         return data
 
 
