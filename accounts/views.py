@@ -39,14 +39,19 @@ class AccountView(ModelViewSet):
                 serializer.save()
                 user = User.objects.get(email=email)
                 refresh = RefreshToken.for_user(user)
+                user_obj = User.objects.get(email=email)
+                # print(user_obj)
+                serializer  = AccountSerializer(user_obj)
                 return Response(
                     {
                         "status": "success",
                         "refresh": str(refresh),
                         "access": str(refresh.access_token),
-                        "user":data,
+                        "user":serializer.data,
                     },
                     status=status.HTTP_201_CREATED,
+                # "working"
+                # serializer.data
                 )
             else:
                 return Response(
@@ -71,26 +76,27 @@ class ChangePassword(APIView):
         email = data.get("otpmail")
         print(data)
         if User.objects.get(email=email).exist():
-            letters = string.ascii_letters
-            digits = string.digits
-            special_chars = string.punctuation
-            selection_list = letters + digits
-            password_len = 5
-            password = ''
-            for i in range(password_len):
-                password+= ''.join(secrets.choice(selection_list))
+            # letters = string.ascii_letters
+            # digits = string.digits
+            # special_chars = string.punctuation
+            # selection_list = letters + digits
+            # password_len = 5
+            # password = ''
+            # for i in range(password_len):
+            #     password+= ''.join(secrets.choice(selection_list))
             
-            data['password'] = password
+            # data['password'] = password
 
-            serializer = self.serializer_class(data=data)    
-            try:
-                if serializer.is_valid(raise_exception=True):
-                    serializer.save()    
-                    return Response(data)
-                else:
-                    return Response({"status":"error"})
-            except Exception as e:
-                print(e)
-                return Response({"status":"error"})
+            # serializer = self.serializer_class(data=data)    
+            # try:
+            #     if serializer.is_valid(raise_exception=True):
+            #         serializer.save()    
+            #         return Response(data)
+            #     else:
+            #         return Response({"status":"error"})
+            # except Exception as e:
+            #     print(e)
+            #     return Response({"status":"error"})
+            return Response({"status":"found"})
         else:
             return Response({"status":"no email found!"})   
