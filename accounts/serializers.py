@@ -91,4 +91,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 class ChangePasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = OTP
-        fields = "__all__"
+        fields = ["otpmail","otp_value"]
+
+class OTPSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OTP
+        fields = ["user_otp","new_password","reenter_new_password"]        

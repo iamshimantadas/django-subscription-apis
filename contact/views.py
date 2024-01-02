@@ -5,7 +5,7 @@ from core.models import ContactUs
 from .serializers import *
 from rest_framework.response import Response
 from django.core.mail import send_mail
-
+from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
@@ -30,7 +30,7 @@ class NewContactRequestView(APIView):
                 name = data.get("name", "Guest")  # Provide a default value
                 message = "Hey! " + name + " Thanks! for contacting us! we will reach you soon! Your Message: " + data.get("message")
                 mailTo = data.get("email")
-                sendFrom = "anirbanmishra7005@gmail.com"
+                sendFrom = settings.SENDING_EMAILID
                 
                 send_mail(
                     "mail auto-reply for contact query",

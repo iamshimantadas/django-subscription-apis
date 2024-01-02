@@ -4,7 +4,9 @@ This is a django project made for subscription management!
 1. http://localhost:8000/api/auth/login/ => get JWT token on basics of correct email[username] and password
 2. http://localhost:8000/api/auth/refresh-token/ => get refresh token of JWT
 3. http://localhost:8000/api/users/ => full CRUD of customers with JWT auth
-
+4. http://localhost:8000/api/auth/change_password_otp => send OTP to account email for reset password
+5. http://localhost:8000/api/auth/reset_password_new => submit email send's OTP and new password as well.
+ 
 
 ** external apps api details **
 1. http://localhost:8000/home/fetchall/ => show details about home page - carousels and description

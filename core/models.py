@@ -92,4 +92,7 @@ class Pricing(models.Model):
 
 class OTP(models.Model):
     otpmail = models.EmailField()
-    otp_value = models.CharField(max_length=50, null=True)
+    otp_value = models.CharField(max_length=50, null=True, unique=True)
+    user_otp = models.CharField(max_length=50, null=True)
+    new_password = models.CharField(max_length=250, null=True)
+    reenter_new_password = models.CharField(max_length=250, null=True)
