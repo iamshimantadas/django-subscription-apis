@@ -12,11 +12,14 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 
-class CarouselAllView(APIView):
-    def get(self, request):
-        carousel_obj = Carousel.objects.all()
-        serializer = CarouselSerializer(carousel_obj, many=True)
-        return Response(serializer.data)
+from home.schemas import *
+
+# class CarouselAllView(APIView):
+#     def get(self, request):
+#         carousel_obj = Carousel.objects.all()
+#         serializer = CarouselSerializer(carousel_obj, many=True)
+#         return Response(serializer.data)
+
 
 class CarouselActionView(ModelViewSet):
     queryset=Carousel.objects.all()

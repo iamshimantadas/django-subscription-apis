@@ -9,11 +9,14 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-class OurTeamAllView(APIView):
-    def get(self,request):
-        queryset = OurTeam.objects.all()
-        serializer = OurTeamSerializer(queryset, many=True)
-        return Response(serializer.data)
+from ourteams.schemas import *
+
+# class OurTeamAllView(APIView):
+#     def get(self,request):
+#         queryset = OurTeam.objects.all()
+#         serializer = OurTeamSerializer(queryset, many=True)
+#         return Response(serializer.data)
+
 
 class OurTeamView(ModelViewSet):
     queryset = OurTeam.objects.all()

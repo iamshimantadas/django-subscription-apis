@@ -13,6 +13,8 @@ from django.conf import settings
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.core.mail import send_mail
 
+from drf_spectacular.utils import extend_schema
+
 from .serializers import *
 from core.models import OTP
 
@@ -20,6 +22,8 @@ from core.models import OTP
 import secrets
 import string
 import random
+
+from accounts.schema import *
 
 
 class AccountView(ModelViewSet):
@@ -63,10 +67,11 @@ class AccountView(ModelViewSet):
             print(e)
             return Response({"status": "error"})
 
-
+@extend_schema(tags=['authentication'])
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
+@extend_schema(tags=['authentication'])
 class ChangePassword(APIView):
     serializer_class = ChangePasswordSerializer
     authentication_classes = []
@@ -123,6 +128,7 @@ class ChangePassword(APIView):
             )
 
 
+@extend_schema(tags=['authentication'])
 class ResetPassword(APIView):
     serializer_class = OTPSerializer
     permission_classes = []
