@@ -30,10 +30,8 @@ class AccountView(ModelViewSet):
 
     def get_permissions(self):
         if self.action == "create":
-            # Exclude IsAuthenticated for the create method
             return []
         else:
-            # Include IsAuthenticated for other methods
             return [IsAuthenticated()]
 
     def create(self, request):
@@ -68,7 +66,6 @@ class AccountView(ModelViewSet):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
-
 
 class ChangePassword(APIView):
     serializer_class = ChangePasswordSerializer

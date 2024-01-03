@@ -25,6 +25,7 @@ EXTERNAL_APPS = [
     "accounts",
      "ourteams",
      "pricing",
+     "plans",
 ]
 
 EXTERNAL_PACKAGES = [

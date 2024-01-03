@@ -9,7 +9,6 @@ pricing_detail_router = SimpleRouter()
 pricing_detail_router.register("",Pricing_detail_view)
 
 urlpatterns = [
-    # path("pricing-detail/",Pricing_detail_view.as_view()),
     path("pricing-detail/",include(pricing_detail_router.urls)),
 ]
 
