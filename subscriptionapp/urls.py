@@ -21,6 +21,7 @@ from whychoose.urls import *
 from accounts.urls import *
 from ourteams.urls import *
 from pricing.urls import *
+from plans.urls import *
 
 urlpatterns = [
     path("api/home/", include("home.urls")),
@@ -41,6 +42,7 @@ urlpatterns = [
         name="redoc",
     ),
     path("api/pricing/",include("pricing.urls")),
+    path("api/subscriptions", include("plans.urls")),
 
 
     path("admin/", admin.site.urls),

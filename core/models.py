@@ -2,6 +2,7 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.models import PermissionsMixin
+from django.utils.timezone import now
 
 from core.manager import UserManager
 
@@ -84,6 +85,7 @@ class Pricing(models.Model):
         Pricing_detail, related_name="package_detail"
     )
     popular = models.BooleanField(null=True)
+    timing = models.IntegerField(null=True)
     link = models.CharField(max_length=100,null=True, default="/")
 
     def __str__(self):
@@ -96,3 +98,11 @@ class OTP(models.Model):
     user_otp = models.CharField(max_length=50, null=True)
     new_password = models.CharField(max_length=250, null=True)
     reenter_new_password = models.CharField(max_length=250, null=True)
+
+class Purchase(models.Model):
+    purchase_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    purchase_plan = models.ForeignKey(Pricing, on_delete=models.CASCADE)
+    purchase_date = models.DateTimeField(default=now, blank=True)
+
+    def __str__(self):
+        return self.purchase_user.first_name    
