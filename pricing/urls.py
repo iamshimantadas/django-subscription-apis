@@ -10,7 +10,7 @@ from .views import *
 
 urlpatterns = [
     path("plans",PlanView.as_view()),
-    path("plans/<int:pk>/",PlanView.as_view()),
+    path("plans/<str:pk>/",PlanView.as_view()),
     # path("pricing-detail/",include(pricing_detail_router.urls)),
 ]
 

@@ -23,7 +23,18 @@ import stripe
 @extend_schema(tags=['plans'])
 class PlanView(APIView):
     def get_object(self, pk):
-        pass
+        prodid = pk
+        if prodid:
+            try:
+                info = stripe.Product.retrieve("prodid")
+                # info = prodid
+                return Response({"product":info})
+            except Exception as e:
+                print(e)
+                return Response({"status":"error"})
+        else:
+            return Response({"message":"enter product ID correctly! ex: prod_PKyAFU3gwXFR"})
+        
     def get(self, request):
         try:
             stripe.api_key = settings.STRIPE_SECRET_KEY
