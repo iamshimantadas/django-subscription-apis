@@ -8,6 +8,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .serializer import *
 from .schemas import *
 
+
 class PlanView(ModelViewSet):
     queryset = Purchase.objects.all()
     serializer_class = PurchaseSeralizer

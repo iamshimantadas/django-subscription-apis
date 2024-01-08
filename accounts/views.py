@@ -66,6 +66,42 @@ class AccountView(ModelViewSet):
         except Exception as e:
             print(e)
             return Response({"status": "error"})
+    
+    # def get_permissions(self):
+    #     if self.action == "create":
+    #         return []
+    #     else:
+    #         return [IsAuthenticated()]
+
+    # def create(self, request):
+    #     data = request.data
+    #     email = data.get("email")
+    #     try:
+    #         serializer = self.serializer_class(data=data)
+    #         if serializer.is_valid(raise_exception=True):
+    #             serializer.save()
+           
+    #             user = User.objects.get(email=email)
+    #             refresh = RefreshToken.for_user(user)
+    #             serializer = AccountSerializer(user)
+    #             return Response(
+    #                 {
+    #                     "status": status.HTTP_201_CREATED,
+    #                     "refresh": str(refresh),
+    #                     "access": str(refresh.access_token),
+    #                     "user": serializer.data
+    #                 },
+    #                 status=status.HTTP_201_CREATED,
+    #             )
+    #         else:
+    #             return Response(
+    #                 {"status": "error"},
+    #                 status=status.HTTP_400_BAD_REQUEST,
+    #             )
+    #     except Exception as e:
+    #         print(e)
+    #         return Response({"status": "error"})
+  
 
 @extend_schema(tags=['authentication'])
 class CustomTokenObtainPairView(TokenObtainPairView):

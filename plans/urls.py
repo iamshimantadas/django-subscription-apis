@@ -8,5 +8,5 @@ router = SimpleRouter()
 router.register("",PlanView)
 
 urlpatterns = [
-    path("user-active-plan",ActivePlanView.as_view()),
+    path("current",ActivePlanView.as_view()),
 ] + router.urls

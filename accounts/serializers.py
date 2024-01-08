@@ -3,12 +3,13 @@ from rest_framework import serializers
 from core.models import User, OTP
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import status
+from django.conf import settings
 
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id","first_name","last_name","email","password","address","phone","profile","role"]
-        
+        fields = ["id", "first_name", "last_name", "email", "password", "address", "phone", "profile", "role"]
+
     def save(self, **kwargs):
         phone = self.validated_data.get('phone', None)
         address = self.validated_data.get('address', None)
@@ -25,6 +26,46 @@ class AccountSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user   
+    
+    # def create(self, validated_data):
+    #     password = validated_data.pop("password", None)
+    #     profile_image = validated_data.pop("profile", None)  # Handle profile image
+
+    #     instance = super(AccountSerializer, self).create(validated_data)
+
+    #     if password is not None:
+    #         instance.set_password(password)
+
+    #     if profile_image is not None:
+    #         instance.profile = profile_image
+
+    #     instance.save()
+    #     return instance
+
+    # def get_profile(self, obj):
+    #     request = self.context.get('request')
+    #     if obj.profile:
+    #         return request.build_absolute_uri(obj.profile.url)
+    #     return None
+
+    # def save(self, **kwargs):
+    #     phone = self.validated_data.get('phone', None)
+    #     address = self.validated_data.get('address', None)
+    #     profile = self.validated_data.get('profile', None)
+    #     user = User(
+    #         email=self.validated_data["email"],
+    #         first_name=self.validated_data['first_name'],
+    #         last_name=self.validated_data['last_name'],
+    #         phone = phone,
+    #         address = address,
+    #         profile = profile,
+    #     )
+    #     password = self.validated_data["password"]
+    #     user.set_password(password)
+    #     user.save()
+    #     return user   
+
+    
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -71,17 +112,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         }
 
     def validate(self, attrs):
-        # data = super().validate(attrs)
-        # data['user_id'] = self.user.id
-        # data['first_name'] = self.user.first_name
-        # data['last_name'] = self.user.last_name
-        # data['email'] = self.user.email
-        # data['address'] = self.user.address
-        # data['phone'] = self.user.phone
-        # data['profile'] = self.get_profile(self)
-        # data['role'] = self.user.role
-        # return data
-
         data = super().validate(attrs)
         data['user'] = self.get_user(self)
         data['status'] = status.HTTP_200_OK

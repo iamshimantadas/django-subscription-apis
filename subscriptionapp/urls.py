@@ -42,7 +42,7 @@ urlpatterns = [
         name="redoc",
     ),
     path("api/pricing/",include("pricing.urls")),
-    path("api/subscriptions", include("plans.urls")),
+    path("api/subscription", include("plans.urls")),
 
 
     path("admin/", admin.site.urls),
