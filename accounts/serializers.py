@@ -27,46 +27,6 @@ class AccountSerializer(serializers.ModelSerializer):
         user.save()
         return user   
     
-    # def create(self, validated_data):
-    #     password = validated_data.pop("password", None)
-    #     profile_image = validated_data.pop("profile", None)  # Handle profile image
-
-    #     instance = super(AccountSerializer, self).create(validated_data)
-
-    #     if password is not None:
-    #         instance.set_password(password)
-
-    #     if profile_image is not None:
-    #         instance.profile = profile_image
-
-    #     instance.save()
-    #     return instance
-
-    # def get_profile(self, obj):
-    #     request = self.context.get('request')
-    #     if obj.profile:
-    #         return request.build_absolute_uri(obj.profile.url)
-    #     return None
-
-    # def save(self, **kwargs):
-    #     phone = self.validated_data.get('phone', None)
-    #     address = self.validated_data.get('address', None)
-    #     profile = self.validated_data.get('profile', None)
-    #     user = User(
-    #         email=self.validated_data["email"],
-    #         first_name=self.validated_data['first_name'],
-    #         last_name=self.validated_data['last_name'],
-    #         phone = phone,
-    #         address = address,
-    #         profile = profile,
-    #     )
-    #     password = self.validated_data["password"]
-    #     user.set_password(password)
-    #     user.save()
-    #     return user   
-
-    
-
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     user_id = serializers.SerializerMethodField()
