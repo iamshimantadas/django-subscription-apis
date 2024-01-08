@@ -28,7 +28,8 @@ from accounts.schema import *
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
-
+from django.core.management import call_command
+from django.core.management.base import CommandError
 
 class AccountView(ModelViewSet):
     queryset = User.objects.all()
@@ -40,48 +41,7 @@ class AccountView(ModelViewSet):
         if self.action == "create":
             return []
         else:
-            return [IsAuthenticated()]
-
-
-    # def create(self, request):
-    #     data = request.data
-    #     email = data.get("email")
-    #     try:
-    #         serializer = self.serializer_class(data=data)
-    #         if serializer.is_valid(raise_exception=True):
-    #             serializer.save()
-    #             user = User.objects.get(email=email)
-    #             refresh = RefreshToken.for_user(user)
-    #             user_obj = User.objects.get(email=email)
-    #             serializer = AccountSerializer(user_obj)
-
-               
-    #             request_scheme = request.scheme
-    #             current_site = request.get_host()
-    #             profile_url = reverse('your_profile_image_url_name', kwargs={'path': serializer.data['profile']})
-    #             absolute_profile_url = f"{request_scheme}://{current_site}{profile_url}"
-
-    #             return Response(
-    #                 {
-    #                     "status": status.HTTP_201_CREATED,
-    #                     "refresh": str(refresh),
-    #                     "access": str(refresh.access_token),
-    #                     "user": {
-    #                         **serializer.data,
-    #                         "profile": absolute_profile_url,
-    #                     },
-    #                 },
-    #                 status=status.HTTP_201_CREATED,
-    #             )
-    #         else:
-    #             return Response(
-    #                 {"status": "error"},
-    #                 status=status.HTTP_400_BAD_REQUEST,
-    #             )
-    #     except Exception as e:
-    #         print(e)
-    #         return Response({"status": "error"})
-        
+            return [IsAuthenticated()]  
 
     def create(self, request):
         data = request.data
@@ -92,8 +52,12 @@ class AccountView(ModelViewSet):
                 serializer.save()
                 user = User.objects.get(email=email)
                 refresh = RefreshToken.for_user(user)
-                user_obj = User.objects.get(email=email)
-                serializer = AccountSerializer(user_obj)
+                serializer = AccountSerializer(user)
+
+                # getting the absolute url of image
+                img = serializer.data['profile']
+                imgurl = request.build_absolute_uri(img)
+
                 return Response(
                     {
                         "status": status.HTTP_201_CREATED,
@@ -101,7 +65,7 @@ class AccountView(ModelViewSet):
                         "access": str(refresh.access_token),
                         "user": {
                             ** serializer.data,
-                            'profile': "http://localhost:8000" + serializer.data['profile']
+                            'profile': imgurl
                         }
                     },
                     status=status.HTTP_201_CREATED,
