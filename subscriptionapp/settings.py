@@ -181,3 +181,11 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
+
+
+# payment
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRETKEY")
+STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLEKEY")
+
+PAYMENT_SUCCESS_URL =  "http://localhost:8000/success"
+PAYMENT_CANCEL_URL = "http://localhost:8000/failed"
