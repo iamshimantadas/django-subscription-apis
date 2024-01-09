@@ -31,6 +31,8 @@ from django.urls import reverse
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
+from django.views.decorators.csrf import csrf_exempt
+
 class AccountView(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = AccountSerializer
@@ -77,6 +79,18 @@ class AccountView(ModelViewSet):
         except Exception as e:
             print(e)
             return Response({"status": "error"})
+
+    @csrf_exempt
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
+
+    @csrf_exempt
+    def partial_update(self, request, *args, **kwargs):
+        return super().partial_update(request, *args, **kwargs)
+
+    @csrf_exempt
+    def destroy(self, request, *args, **kwargs):
+        return super().destroy(request, *args, **kwargs)        
         
 
           
