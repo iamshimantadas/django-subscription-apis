@@ -80,17 +80,17 @@ class AccountView(ModelViewSet):
             print(e)
             return Response({"status": "error"})
 
-    @csrf_exempt
-    def update(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
+    # @csrf_exempt
+    # def update(self, request, *args, **kwargs):
+    #     return super().update(request, *args, **kwargs)
 
-    @csrf_exempt
-    def partial_update(self, request, *args, **kwargs):
-        return super().partial_update(request, *args, **kwargs)
+    # @csrf_exempt
+    # def partial_update(self, request, *args, **kwargs):
+    #     return super().partial_update(request, *args, **kwargs)
 
-    @csrf_exempt
-    def destroy(self, request, *args, **kwargs):
-        return super().destroy(request, *args, **kwargs)        
+    # @csrf_exempt
+    # def destroy(self, request, *args, **kwargs):
+    #     return super().destroy(request, *args, **kwargs)        
         
 
           
