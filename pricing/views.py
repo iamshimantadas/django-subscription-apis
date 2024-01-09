@@ -25,16 +25,46 @@ class PlanView(APIView):
                 print(e)
                 return Response({"status":"error"})
         else:
+            # try:
+            #     products = stripe.Product.list()
+            #     price = stripe.Price.retrieve()
+            #     return Response({"products": products.data})
+            # except Exception as e:
+            #     print(e)
+            #     return Response({"status":"error"})
+
+            # try:
+            #     products = stripe.Product.list()
+            #     response_data = []
+
+            #     for product in products.data:
+            #         prices = stripe.Price.list(product=product.id)
+            #         response_data.append({
+            #             "product": product,
+            #             "prices": prices.data
+            #         })
+
+            #     return Response({"products": response_data})
+            # except Exception as e:
+            #     print(e)
+            #     return Response({"status": "error"})
+
             try:
                 products = stripe.Product.list()
-                return Response({"products": products})
+                response_data = []
+
+                for product in products.data:
+                    prices = stripe.Price.list(product=product.id)
+                    product_with_prices = {
+                        "product": product,
+                        "prices": [{"unit_amount": price.unit_amount/100} for price in prices.data]
+                    }
+                    response_data.append(product_with_prices)
+
+                return Response({"products": response_data})
             except Exception as e:
                 print(e)
-                return Response({"status":"error"})    
-        # try:
-            
-        # except stripe.error.StripeError as e:
-        #     print(e)
-        #     return Response({"status": "error"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"status": "error"})    
+        
 
     
