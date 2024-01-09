@@ -25,30 +25,6 @@ class PlanView(APIView):
                 print(e)
                 return Response({"status":"error"})
         else:
-            # try:
-            #     products = stripe.Product.list()
-            #     price = stripe.Price.retrieve()
-            #     return Response({"products": products.data})
-            # except Exception as e:
-            #     print(e)
-            #     return Response({"status":"error"})
-
-            # try:
-            #     products = stripe.Product.list()
-            #     response_data = []
-
-            #     for product in products.data:
-            #         prices = stripe.Price.list(product=product.id)
-            #         response_data.append({
-            #             "product": product,
-            #             "prices": prices.data
-            #         })
-
-            #     return Response({"products": response_data})
-            # except Exception as e:
-            #     print(e)
-            #     return Response({"status": "error"})
-
             try:
                 products = stripe.Product.list()
                 response_data = []
@@ -65,6 +41,27 @@ class PlanView(APIView):
             except Exception as e:
                 print(e)
                 return Response({"status": "error"})    
-        
+
+    # def post(self, request):
+    #     pass    
 
     
+class CustomerView(APIView):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    
+    def get(self, request):
+        customer = stripe.Customer.list()
+        return Response({"data":customer})
+
+    def post(self, request):
+        data = request.data
+        name = data.get("name")
+        email= data.get("email")
+        try:
+            stripe.Customer.create(
+            name=name,
+            email=email,
+            )
+        except Exception as e:
+            print(e)
+            return Response({"status":"error"})    

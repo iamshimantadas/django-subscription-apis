@@ -13,3 +13,6 @@ class PricingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pricing
         fields = ["id","package_name","price","details","popular","link"]
+
+
+
