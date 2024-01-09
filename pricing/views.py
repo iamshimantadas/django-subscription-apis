@@ -48,10 +48,24 @@ class PlanView(APIView):
     
 class CustomerView(APIView):
     stripe.api_key = settings.STRIPE_SECRET_KEY
-    
-    def get(self, request):
-        customer = stripe.Customer.list()
-        return Response({"data":customer})
+
+    def get(self, request, pk=None):
+        if pk:
+            try:
+                userid = pk
+                customer = stripe.Customer.retrieve(userid)
+                return Response({"data":customer})
+            except Exception as e:
+                print(e)
+                return Response({"status":"error"})
+        else:
+            try:
+                customer = stripe.Customer.list()
+                return Response({"data":customer.data})
+            except Exception as e:
+                print(e)
+                return Response({"status":"error"})
+        
 
     def post(self, request):
         data = request.data
@@ -62,6 +76,11 @@ class CustomerView(APIView):
             name=name,
             email=email,
             )
+
+            customer = stripe.Customer.list()
+            print(type(customer))
+            print('meshimanta@yahoo.com' in customer.data.email)
+            return Response({"message":"customer added"})
         except Exception as e:
             print(e)
             return Response({"status":"error"})    

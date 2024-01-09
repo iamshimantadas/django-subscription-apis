@@ -9,24 +9,24 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "first_name", "last_name", "email", "password", "address", "phone", "profile", "role"]
+        extra_kwargs = {"password": {"write_only": True}}
 
-    def save(self, **kwargs):
-        phone = self.validated_data.get('phone', None)
-        address = self.validated_data.get('address', None)
-        profile = self.validated_data.get('profile', None)
-        user = User(
-            email=self.validated_data["email"],
-            first_name=self.validated_data['first_name'],
-            last_name=self.validated_data['last_name'],
-            phone = phone,
-            address = address,
-            profile = profile,
-        )
-        password = self.validated_data["password"]
-        user.set_password(password)
-        user.save()
-        return user   
-    
+    def create(self, validated_data):
+        password = validated_data.pop("password", None)
+        instance = super(AccountSerializer, self).create(validated_data)
+        if password is not None:
+            instance.set_password(password)
+            instance.save()
+        return instance
+
+    def update(self, instance, validated_data):
+        password = validated_data.pop("password", None)
+        instance = super(AccountSerializer, self).update(instance, validated_data)
+        if password is not None:
+            instance.set_password(password)
+            instance.save()
+        return instance    
+
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     user_id = serializers.SerializerMethodField()

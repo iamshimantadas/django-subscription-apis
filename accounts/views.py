@@ -41,7 +41,7 @@ class AccountView(ModelViewSet):
         if self.action == "create":
             return []
         else:
-            return [IsAuthenticated()]  
+            return [IsAuthenticated()]
 
     def create(self, request):
         data = request.data
@@ -52,9 +52,8 @@ class AccountView(ModelViewSet):
                 serializer.save()
                 user = User.objects.get(email=email)
                 refresh = RefreshToken.for_user(user)
-                serializer = AccountSerializer(user)
+                serializer = self.serializer_class(user)
 
-                # getting the absolute url of image
                 img = serializer.data['profile']
                 imgurl = request.build_absolute_uri(img)
 
@@ -78,8 +77,9 @@ class AccountView(ModelViewSet):
         except Exception as e:
             print(e)
             return Response({"status": "error"})
-    
+        
 
+          
 @extend_schema(tags=['authentication'])
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer

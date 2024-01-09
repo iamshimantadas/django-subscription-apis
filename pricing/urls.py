@@ -7,5 +7,6 @@ urlpatterns = [
     path("plans/<str:pk>",PlanView.as_view()),
 
     path("customer",CustomerView.as_view()),
+    path("customer/<str:pk>",CustomerView.as_view()),
 ]
 
