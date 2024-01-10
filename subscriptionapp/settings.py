@@ -54,17 +54,17 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    # "https://example.com",
-    # "https://sub.example.com",
-    # "http://localhost:8080",
-    # "http://127.0.0.1:3000",
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:3000",
     "http://localhost:3000",
 ]
 
 CSRF_COOKIE_SECURE = True  # Set to True if using HTTPS
 CSRF_COOKIE_HTTPONLY = True
 
-# CSRF_TRUSTED_ORIGINS=["http://localhost:8000"]
+CSRF_TRUSTED_ORIGINS=["http://localhost:8000"]
 
 ROOT_URLCONF = "subscriptionapp.urls"
 
