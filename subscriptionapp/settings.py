@@ -64,6 +64,8 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_COOKIE_SECURE = True  # Set to True if using HTTPS
 CSRF_COOKIE_HTTPONLY = True
 
+# CSRF_TRUSTED_ORIGINS=["http://localhost:8000"]
+
 ROOT_URLCONF = "subscriptionapp.urls"
 
 TEMPLATES = [
