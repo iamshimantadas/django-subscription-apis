@@ -157,9 +157,14 @@ SPECTACULAR_SETTINGS = {"COMPONENT_SPLIT_REQUEST": True}
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+
+# payment
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRETKEY")
+SUCCESSUL = "http://localhost:8000/api/subscription/success/"
+FAILEDURL = "http://localhost:8000/api/subscription/fail/"
 
 
+# email
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDING_EMAILID = os.environ.get("SENDGRID_SENDING_EMAILID")

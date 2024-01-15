@@ -80,3 +80,8 @@ class OTP(models.Model):
     new_password = models.CharField(max_length=250, null=True)
     reenter_new_password = models.CharField(max_length=250, null=True)
     
+class Purchase(models.Model):
+    custid = models.CharField(max_length=100)
+    planid = models.CharField(max_length=100)
+    sessionid = models.CharField(max_length=100)
+    datetime = models.DateTimeField()
