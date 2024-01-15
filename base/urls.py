@@ -8,11 +8,12 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 from accounts.urls import *
 from pricing.urls import *
 from home.urls import *
-
+from about.urls import *
 
 
 urlpatterns = [
     path('api/carousel/',include("home.urls")),
+    path('api/about/',include("about.urls")),
     
 
     path('api/',include('accounts.urls')),

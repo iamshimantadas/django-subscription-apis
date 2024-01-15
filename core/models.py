@@ -21,6 +21,9 @@ class AboutUs(models.Model):
     thumbimg = models.ImageField(upload_to="media/core")
     about_descp = models.TextField()
 
+    def __str__(self):
+        return self.about_descp
+
 
 class WhyChooseUs(models.Model):
     chooseus_heading = models.CharField(max_length=250)

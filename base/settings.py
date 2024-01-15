@@ -33,6 +33,7 @@ EXTERNAL_APPS = [
     'core',
     'accounts',
     'home',
+    'about',
 ]
 
 EXTERNAL_PACKAGES = [
