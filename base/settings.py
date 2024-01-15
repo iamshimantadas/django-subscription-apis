@@ -26,20 +26,24 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',    
+]
 
+EXTERNAL_APPS = [
     'core',
     'accounts',
+    'home',
+]
 
-
-
+EXTERNAL_PACKAGES = [
     'rest_framework',
     'drf_spectacular',
      'drf_spectacular_sidecar',
       'rest_framework_simplejwt',
       'corsheaders',
-
 ]
+
+INSTALLED_APPS = INSTALLED_APPS + EXTERNAL_PACKAGES + EXTERNAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
