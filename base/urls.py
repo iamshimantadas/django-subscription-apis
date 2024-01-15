@@ -9,11 +9,12 @@ from accounts.urls import *
 from pricing.urls import *
 from home.urls import *
 from about.urls import *
-
+from contact.urls import *
 
 urlpatterns = [
     path('api/carousel/',include("home.urls")),
     path('api/about/',include("about.urls")),
+    path('api/contact-us/',include("contact.urls")),
     
 
     path('api/',include('accounts.urls')),
