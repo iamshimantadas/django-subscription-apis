@@ -46,8 +46,6 @@ class OurTeam(models.Model):
     def __str__(self):
         return self.name
 
-
-# custom model
 class User(AbstractBaseUser, PermissionsMixin):
     ROLES = (
         ("admin", "admin"),
@@ -74,38 +72,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-class Pricing_detail(models.Model):
-    detail_name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.detail_name
-
-
-class Pricing(models.Model):
-    package_name = models.CharField(max_length=200)
-    price = models.CharField(max_length=100)
-    details = models.ManyToManyField(
-        Pricing_detail, related_name="package_detail"
-    )
-    popular = models.BooleanField(null=True)
-    timing = models.IntegerField(null=True)
-    link = models.CharField(max_length=100,null=True, default="/")
-
-    def __str__(self):
-        return self.package_name
-
-
 class OTP(models.Model):
     otpmail = models.EmailField()
     otp_value = models.CharField(max_length=50, null=True, unique=True)
     user_otp = models.CharField(max_length=50, null=True)
     new_password = models.CharField(max_length=250, null=True)
     reenter_new_password = models.CharField(max_length=250, null=True)
-
-class Purchase(models.Model):
-    purchase_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    purchase_plan = models.ForeignKey(Pricing, on_delete=models.CASCADE)
-    purchase_date = models.DateTimeField(default=now, blank=True)
-
-    def __str__(self):
-        return self.purchase_user.first_name    
+    

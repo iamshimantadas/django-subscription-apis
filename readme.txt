@@ -1,5 +1,6 @@
 carousel:http://localhost:8000/api/carousel/
 users CRUD: http://localhost:8000/api/users/
+contact us: http://localhost:8000/api/contact-us/
 
 
 

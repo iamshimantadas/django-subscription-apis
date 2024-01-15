@@ -6,20 +6,18 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 
 # app urls
 from accounts.urls import *
-from pricing.urls import *
 from home.urls import *
 from about.urls import *
 from contact.urls import *
 
 urlpatterns = [
+    path('api/',include('accounts.urls')),
     path('api/carousel/',include("home.urls")),
     path('api/about/',include("about.urls")),
     path('api/contact-us/',include("contact.urls")),
     
 
-    path('api/',include('accounts.urls')),
-    # path('api/plans/',include('pricing.urls')),
-
+    
 
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

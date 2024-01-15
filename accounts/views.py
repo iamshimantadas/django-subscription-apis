@@ -2,7 +2,7 @@ from django.db import IntegrityError
 from django.shortcuts import render
 
 from rest_framework.viewsets import ModelViewSet
-from core.models import User
+from core.models import User, OTP
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -12,29 +12,20 @@ from rest_framework.views import APIView
 from django.conf import settings
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.core.mail import send_mail
-
 from drf_spectacular.utils import extend_schema
-
-from .serializers import *
-from core.models import OTP
-
-# random password generate
-import secrets
-import string
-import random
-
-from accounts.schema import *
-
-
-from django.contrib.sites.shortcuts import get_current_site
-from django.urls import reverse
-from django.core.management import call_command
-from django.core.management.base import CommandError
-
 from django.views.decorators.csrf import csrf_exempt
-
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+
+from .serializers import *
+from accounts.schema import *
+
+import secrets
+import string
+import stripe
+
+
+
 
 @method_decorator(csrf_exempt, name="dispatch")
 class AccountView(ModelViewSet):
@@ -52,10 +43,24 @@ class AccountView(ModelViewSet):
     def create(self, request):
         data = request.data
         email = data.get("email")
+        fname  = data.get("first_name")
+        lname = data.get("last_name")
+        
+        name = fname+" "+lname
+
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+
         try:
             serializer = self.serializer_class(data=data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
+
+                # add customer to stripe
+                stripe.Customer.create(
+                name=name,
+                email=email,
+                )
+                
                 user = User.objects.get(email=email)
                 refresh = RefreshToken.for_user(user)
                 serializer = self.serializer_class(user)
