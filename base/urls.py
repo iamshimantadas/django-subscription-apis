@@ -9,13 +9,15 @@ from accounts.urls import *
 from home.urls import *
 from about.urls import *
 from contact.urls import *
+from subscription.urls import *
+
 
 urlpatterns = [
     path('api/',include('accounts.urls')),
     path('api/carousel/',include("home.urls")),
     path('api/about/',include("about.urls")),
     path('api/contact-us/',include("contact.urls")),
-    
+    path('api/subscription/',include("subscription.urls")),
 
     
 
