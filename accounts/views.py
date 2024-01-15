@@ -56,12 +56,15 @@ class AccountView(ModelViewSet):
                 serializer.save()
 
                 # add customer to stripe
-                stripe.Customer.create(
+                stripe_res = stripe.Customer.create(
                 name=name,
                 email=email,
                 )
                 
                 user = User.objects.get(email=email)
+                user.stripe_id = stripe_res.id
+                user.save()
+
                 refresh = RefreshToken.for_user(user)
                 serializer = self.serializer_class(user)
 
@@ -76,7 +79,8 @@ class AccountView(ModelViewSet):
                         "user": {
                             ** serializer.data,
                             'profile': imgurl
-                        }
+                        },
+                        "stripe_customer_id": stripe_res.id
                     },
                     status=status.HTTP_201_CREATED,
                 )

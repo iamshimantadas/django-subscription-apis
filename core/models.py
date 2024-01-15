@@ -58,6 +58,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     address = models.TextField(null=True)
     phone = models.BigIntegerField(null=True)
     profile = models.ImageField(upload_to="media/core", null=True)
+    stripe_id = models.CharField(max_length=100, null=True)
     role = models.CharField(max_length=20, choices=ROLES, null=True, default="customer")
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
