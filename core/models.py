@@ -83,5 +83,4 @@ class OTP(models.Model):
 class Purchase(models.Model):
     custid = models.CharField(max_length=100)
     planid = models.CharField(max_length=100)
-    sessionid = models.CharField(max_length=100)
     datetime = models.DateTimeField()

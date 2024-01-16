@@ -59,6 +59,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_role(self, obj):
         return obj.user.role
     
+    def get_stripe_id(self, obj):
+        return obj.user.stripe_id
+    
     def get_user(self, obj):
         return {
             "user_id": obj.user.id,
@@ -69,6 +72,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             "phone": obj.user.phone,
             "profile": self.get_profile(obj),
             "role": obj.user.role,
+            "custid": obj.user.stripe_id,
         }
 
     def validate(self, attrs):

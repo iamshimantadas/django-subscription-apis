@@ -80,7 +80,7 @@ class AccountView(ModelViewSet):
                             ** serializer.data,
                             'profile': imgurl
                         },
-                        "stripe_customer_id": stripe_res.id
+                        "custid": stripe_res.id
                     },
                     status=status.HTTP_201_CREATED,
                 )

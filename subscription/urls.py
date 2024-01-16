@@ -6,5 +6,5 @@ urlpatterns = [
     path("buy/",BuyView),
     path("success/",SuccessView,name='success_view'),
     path("fail/",FailView),
-    path("active-paln/",ActivePlanView),
+    path("active-plan/<str:pk>/",ActivePlanView.as_view()),
 ]
